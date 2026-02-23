@@ -22,7 +22,16 @@ import ContactPage from './pages/ContactPage';
 // Components
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const navLinks = [
     { name: 'Hjem', path: '/' },
@@ -32,14 +41,17 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 glass-nav">
+    <nav
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 glass-nav ${isScrolled ? 'py-0 shadow-lg' : 'py-2'
+        }`}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-20 items-center">
-          <Link to="/" className="flex items-center space-x-2">
-            <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+        <div className={`flex justify-between items-center transition-all duration-500 ${isScrolled ? 'h-16' : 'h-20'}`}>
+          <Link to="/" className="flex items-center space-x-2 group">
+            <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center transition-transform duration-300 group-hover:rotate-6">
               <span className="text-white font-bold text-xl">GE</span>
             </div>
-            <span className="text-2xl font-display font-bold text-primary tracking-tight">
+            <span className="text-2xl font-display font-bold tracking-tight text-primary">
               Grøn Elegance
             </span>
           </Link>
@@ -50,11 +62,12 @@ const Navbar = () => {
               <Link
                 key={link.path}
                 to={link.path}
-                className={`text-sm font-medium transition-colors hover:text-primary ${
-                  location.pathname === link.path ? 'text-primary' : 'text-gray-500'
-                }`}
+                className={`text-sm font-medium transition-all duration-300 hover:text-accent relative group ${location.pathname === link.path ? 'text-primary' : 'text-gray-600'
+                  }`}
               >
                 {link.name}
+                <span className={`absolute -bottom-1 left-0 w-0 h-0.5 bg-accent transition-all duration-300 group-hover:w-full ${location.pathname === link.path ? 'w-full' : ''
+                  }`} />
               </Link>
             ))}
             <Link to="/kontakt" className="btn-primary py-2 px-6 text-sm">
@@ -66,7 +79,7 @@ const Navbar = () => {
           <div className="md:hidden flex items-center">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="text-primary p-2"
+              className="p-2 transition-colors text-primary"
             >
               {isOpen ? <X size={28} /> : <Menu size={28} />}
             </button>
@@ -81,7 +94,7 @@ const Navbar = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-white border-b border-gray-100 overflow-hidden"
+            className="md:hidden bg-white border-b border-gray-100 overflow-hidden shadow-xl"
           >
             <div className="px-4 pt-2 pb-6 space-y-1">
               {navLinks.map((link) => (
@@ -89,7 +102,8 @@ const Navbar = () => {
                   key={link.path}
                   to={link.path}
                   onClick={() => setIsOpen(false)}
-                  className="block px-3 py-4 text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50 rounded-md"
+                  className={`block px-3 py-4 text-base font-medium rounded-md transition-colors ${location.pathname === link.path ? 'text-primary bg-primary/5' : 'text-gray-700 hover:text-primary hover:bg-gray-50'
+                    }`}
                 >
                   {link.name}
                 </Link>
@@ -204,7 +218,7 @@ export default function App() {
       <ScrollToTop />
       <div className="min-h-screen flex flex-col">
         <Navbar />
-        <main className="flex-grow pt-20">
+        <main className="flex-grow pt-32">
           <AnimatePresence mode="wait">
             <Routes>
               <Route path="/" element={<LandingPage />} />

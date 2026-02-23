@@ -36,10 +36,30 @@ const services = [
 ];
 
 const ServicesPage = () => {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.2
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: { duration: 0.5, ease: "easeOut" }
+    }
+  };
+
   return (
     <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
+      initial="hidden"
+      animate="visible"
       exit={{ opacity: 0 }}
       className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20"
     >
@@ -64,16 +84,18 @@ const ServicesPage = () => {
         </div>
       </div>
 
-      {/* Services Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <motion.div
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+      >
         {services.map((service, idx) => (
           <motion.div
             key={idx}
-            initial={{ y: 30, opacity: 0 }}
-            whileInView={{ y: 0, opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: idx * 0.1 }}
-            className="group relative bg-white rounded-[2.5rem] overflow-hidden card-shadow border border-gray-100 flex flex-col h-full"
+            variants={itemVariants}
+            className="group relative bg-white rounded-[2.5rem] overflow-hidden card-shadow border border-gray-100 flex flex-col h-full transition-all duration-500"
           >
             <div className="relative h-64 overflow-hidden">
               <img
@@ -83,16 +105,16 @@ const ServicesPage = () => {
                 referrerPolicy="no-referrer"
               />
               <div className="absolute top-6 right-6">
-                <div className="w-12 h-12 bg-white/90 backdrop-blur-md rounded-full flex items-center justify-center text-primary shadow-lg group-hover:bg-primary group-hover:text-white transition-colors">
+                <div className="w-12 h-12 bg-white/90 backdrop-blur-md rounded-full flex items-center justify-center text-primary shadow-lg group-hover:bg-primary group-hover:text-white transition-colors duration-300">
                   <ArrowUpRight size={24} />
                 </div>
               </div>
             </div>
-            
+
             <div className="p-8 flex-grow flex flex-col">
-              <h3 className="text-2xl font-display font-bold text-primary mb-4">{service.title}</h3>
+              <h3 className="text-2xl font-display font-bold text-primary mb-4 transition-colors group-hover:text-accent">{service.title}</h3>
               <p className="text-gray-500 text-sm leading-relaxed mb-8">{service.desc}</p>
-              
+
               <div className="mt-auto pt-6 border-t border-gray-50">
                 <ul className="grid grid-cols-1 gap-3">
                   {service.features.map((feature, fIdx) => (
@@ -109,14 +131,13 @@ const ServicesPage = () => {
 
         {/* Custom Solution Card */}
         <motion.div
-          initial={{ y: 30, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.5 }}
-          className="bg-primary rounded-[2.5rem] p-10 text-white flex flex-col justify-center items-center text-center space-y-8"
+          variants={itemVariants}
+          className="bg-primary rounded-[2.5rem] p-10 text-white flex flex-col justify-center items-center text-center space-y-8 relative overflow-hidden group shadow-xl"
         >
-          <div className="w-20 h-20 bg-accent rounded-3xl flex items-center justify-center rotate-12">
-            <ArrowUpRight size={40} className="text-primary -rotate-12" />
+          <div className="absolute top-0 right-0 w-32 h-32 bg-accent/10 rounded-full -translate-y-1/2 translate-x-1/2 blur-2xl group-hover:scale-150 transition-transform duration-700" />
+
+          <div className="w-20 h-20 bg-accent rounded-3xl flex items-center justify-center rotate-12 transition-transform duration-500 group-hover:rotate-0">
+            <ArrowUpRight size={40} className="text-primary -rotate-12 transition-transform duration-500 group-hover:rotate-0" />
           </div>
           <div>
             <h3 className="text-2xl font-display font-bold mb-4">Har du en speciel opgave?</h3>
@@ -124,11 +145,11 @@ const ServicesPage = () => {
               Vi elsker udfordringer. Kontakt os for en snak om dit unikke projekt.
             </p>
           </div>
-          <Link to="/kontakt" className="w-full py-4 bg-white text-primary font-bold rounded-full hover:bg-accent transition-colors">
+          <Link to="/kontakt" className="w-full py-4 bg-white text-primary font-bold rounded-full hover:bg-accent hover:text-white transition-all duration-300">
             Kontakt os nu
           </Link>
         </motion.div>
-      </div>
+      </motion.div>
     </motion.div>
   );
 };

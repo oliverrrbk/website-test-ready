@@ -15,10 +15,10 @@
 
 @layer base {
   body {
-    @apply font-sans text-gray-900 bg-white antialiased;
+    @apply font-sans text-gray-900 bg-white antialiased selection:bg-primary/10 selection:text-primary;
   }
   h1, h2, h3, h4, h5, h6 {
-    @apply font-display;
+    @apply font-display tracking-tight;
   }
 }
 
@@ -26,14 +26,40 @@
   @apply bg-white/80 backdrop-blur-md border-b border-gray-100;
 }
 
+.glass-nav-transparent {
+  @apply bg-transparent border-transparent;
+}
+
 .btn-primary {
-  @apply px-8 py-4 bg-primary text-white font-medium rounded-full transition-all hover:bg-primary-light hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0;
+  @apply relative overflow-hidden px-8 py-4 bg-primary text-white font-medium rounded-full transition-all duration-300 hover:bg-primary-light hover:shadow-[0_8px_30px_rgba(45,74,62,0.3)] hover:-translate-y-0.5 active:translate-y-0;
+}
+
+.btn-primary::after {
+  content: "";
+  @apply absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 -translate-x-full skew-x-[-25deg] transition-transform duration-1000;
+}
+
+.btn-primary:hover::after {
+  @apply translate-x-[200%];
 }
 
 .btn-outline {
-  @apply px-8 py-4 border-2 border-primary text-primary font-medium rounded-full transition-all hover:bg-primary hover:text-white;
+  @apply px-8 py-4 border-2 border-primary text-primary font-medium rounded-full transition-all duration-300 hover:bg-primary hover:text-white hover:shadow-lg;
 }
 
 .card-shadow {
-  @apply shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] transition-shadow duration-300;
+  @apply shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] transition-all duration-500 hover:-translate-y-1;
+}
+
+.section-spacing {
+  @apply py-24 md:py-32;
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.animate-shimmer {
+  animation: shimmer 2.5s infinite linear;
 }
