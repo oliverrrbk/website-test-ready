@@ -1,0 +1,7 @@
+{
+  "name": "test gartner short+html+shots",
+  "description": "Professionel anlægsgartner med fokus på kvalitet, havedesign og vedligeholdelse. Få et uforpligtende tilbud på din drømmehave.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}
