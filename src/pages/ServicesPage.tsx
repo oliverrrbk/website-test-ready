@@ -5,32 +5,32 @@ import { Link } from 'react-router-dom';
 const services = [
   {
     title: "Havedesign & Anlæg",
-    desc: "Vi hjælper med alt fra den spæde idé til den færdige haveplan og udførelse.",
-    image: "https://images.unsplash.com/photo-1558904541-efa8c1965f1e?auto=format&fit=crop&q=80&w=800",
+    desc: "Omdan dit drømmeuderum til virkelighed med vores havearkitekter. Vi hjælper med alt fra den spæde idé og skitsering til den færdige haveplan og endelige udførelse.",
+    image: "/images/slideshow/2.png",
     features: ["Haveplaner", "Beplantning", "Græsplæner"]
   },
   {
     title: "Belægning & Terrasser",
-    desc: "Professionel lægning af fliser, sten og træterrasser i højeste kvalitet.",
-    image: "https://images.unsplash.com/photo-1590059391153-060481284898?auto=format&fit=crop&q=80&w=800",
+    desc: "Skab fundamentet for det gode udeliv med professionel belægning. Vi udfører lægning af fliser, sten og flotte træterrasser i højeste kvalitet med fokus på lang levetid.",
+    image: "/images/slideshow/3.png",
     features: ["Indkørsler", "Terrasser", "Støttemure"]
   },
   {
     title: "Vedligeholdelse",
-    desc: "Lad os stå for det grove, så du bare kan nyde din have hele året rundt.",
-    image: "https://images.unsplash.com/photo-1592419044706-39796d40f98c?auto=format&fit=crop&q=80&w=800",
+    desc: "Slip for det hårde fysiske arbejde og få en skarp finish. Lad os stå for det grove, så du trygt kan læne dig tilbage og bare nyde din velholdte have hele året rundt.",
+    image: "/images/slideshow/4.png",
     features: ["Hækklipning", "Græsslåning", "Ukrudtsbekæmpelse"]
   },
   {
     title: "Træfældning & Beskæring",
-    desc: "Sikker fældning af vanskelige træer og professionel beskæring af buske.",
-    image: "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&q=80&w=800",
+    desc: "Vi udfører alt inden for avanceret og sikker fældning af vanskelige træer. Vi tilbyder derudover professionel beskæring, så dine buske altid forbliver sunde og frodige.",
+    image: "/images/slideshow/5.png",
     features: ["Sektionsfældning", "Topkapning", "Stubfræsning"]
   },
   {
     title: "Hegn & Indhegning",
-    desc: "Vi opsætter alle typer hegn, der passer til din haves stil og dine behov.",
-    image: "https://images.unsplash.com/photo-1610555356070-d0efb6505f81?auto=format&fit=crop&q=80&w=800",
+    desc: "Få skabt en smuk og elegant afskærmning omkring dit frirum. Vi leverer og opsætter alle typer hegn, som naturligt passer til din husstil og imødekommer dine praktiske behov.",
+    image: "/images/slideshow/6.png",
     features: ["Træhegn", "Panelhegn", "Låger & porte"]
   }
 ];
@@ -77,8 +77,8 @@ const ServicesPage = () => {
           <p className="text-gray-500 text-lg leading-relaxed mb-8">
             Fra design til installation tilbyder vi kvalitetsløsninger skræddersyet til dine behov. Vi går aldrig på kompromis med kvaliteten.
           </p>
-          <Link to="/kontakt" className="btn-primary inline-flex items-center space-x-2">
-            <span>Se alle vores services</span>
+          <Link to="/om-os" className="btn-primary inline-flex items-center space-x-2">
+            <span>Læs om hvordan vi gør</span>
             <ArrowUpRight size={20} />
           </Link>
         </div>
@@ -104,11 +104,6 @@ const ServicesPage = () => {
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 referrerPolicy="no-referrer"
               />
-              <div className="absolute top-6 right-6">
-                <div className="w-12 h-12 bg-white/90 backdrop-blur-md rounded-full flex items-center justify-center text-primary shadow-lg group-hover:bg-primary group-hover:text-white transition-colors duration-300">
-                  <ArrowUpRight size={24} />
-                </div>
-              </div>
             </div>
 
             <div className="p-8 flex-grow flex flex-col">

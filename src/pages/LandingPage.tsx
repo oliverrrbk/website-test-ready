@@ -33,13 +33,16 @@ const LandingPage = () => {
       {/* Hero Section */}
       <section className="relative h-[80vh] flex items-center overflow-hidden mt-8 md:mt-12 mx-4 sm:mx-6 lg:mx-8 rounded-[2rem] md:rounded-[3rem] shadow-2xl">
         <div className="absolute inset-0 z-0">
-          <img
-            src="https://images.unsplash.com/photo-1558904541-efa8c1965f1e?auto=format&fit=crop&q=80&w=2000"
-            alt="Smuk have"
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
             className="w-full h-full object-cover"
-            referrerPolicy="no-referrer"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-primary/95 to-primary/30" />
+          >
+            <source src="https://video-public.canva.com/VAG5zgHpgwU/d/bwandrmlue.mp4" type="video/mp4" />
+          </video>
+          <div className="absolute inset-0 bg-gradient-to-r from-primary/90 to-primary/20" />
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-white">
@@ -52,19 +55,21 @@ const LandingPage = () => {
               <span className="text-sm font-medium">4.9/5 Google Rating</span>
             </div>
             <h1 className="text-5xl md:text-7xl font-display font-bold leading-tight mb-6">
-              Vi forvandler din have til et <span className="text-accent">levende kunstværk</span>
+              Større udeprojekter kræver styring <br />
+              <span className="text-accent">– ikke tilfældigheder</span>
             </h1>
-            <p className="text-xl text-gray-200 mb-10 max-w-xl leading-relaxed">
-              Professionel anlægsgartner i Aarhus og omegn. Vi skaber uderum, der forener æstetik, funktionalitet og holdbarhed.
+            <p className="text-xl text-gray-200 mb-10 max-w-4xl leading-relaxed">
+
+              Grønrum Anlæg er den strukturerede anlægspartner for bygherrer, der vil gennemføre større udeprojekter kontrolleret, dokumenteret og til aftalt tid.
             </p>
             <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6">
-              <Link to="/kontakt" className="btn-primary text-center flex items-center justify-center space-x-2">
-                <span>Få et uforpligtende tilbud</span>
+              <Link to="/kontakt" className="btn-primary text-center flex items-center justify-center space-x-2 shadow-[0_0_20px_rgba(255,255,255,0.1)] border border-white/10 hover:border-accent/50 transition-all">
+                <span>Se hvordan vi styrer projekter</span>
                 <ArrowRight size={18} />
               </Link>
-              <a href="tel:+4512345678" className="flex items-center justify-center space-x-3 text-lg font-semibold hover:text-accent transition-colors">
-                <div className="w-12 h-12 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center border border-white/20">
-                  <Phone size={20} />
+              <a href="tel:+4512345678" className="flex items-center justify-center space-x-4 text-xl font-semibold text-white hover:text-accent transition-all group">
+                <div className="w-14 h-14 bg-white/15 backdrop-blur-xl rounded-full flex items-center justify-center border border-white/25 group-hover:border-accent group-hover:bg-white/25 transition-all shadow-lg">
+                  <Phone size={24} className="group-hover:animate-pulse" />
                 </div>
                 <span>Ring os op</span>
               </a>
@@ -74,33 +79,46 @@ const LandingPage = () => {
       </section>
 
       {/* Trust & Stats Section */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 section-spacing">
+      <section className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-12 xl:px-24 section-spacing">
         <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-8"
+          className="grid grid-cols-1 lg:grid-cols-3 gap-6 xl:gap-10"
         >
           {[
-            { icon: ShieldCheck, title: "100% Garanti", desc: "Vi forlader aldrig en opgave, før du er fuldt tilfreds." },
-            { icon: Clock, title: "Overholdte Aftaler", desc: "Vi kommer til tiden og overholder alle deadlines." },
-            { icon: MapPin, title: "Lokalt Forankret", desc: "Din lokale gartner i Østjylland med 15 års erfaring." }
+            {
+              icon: ShieldCheck,
+              title: "Fast projektstyring fra første møde",
+              desc: "Én ansvarlig projektleder. Klar tidsplan. Tydelig ansvarsfordeling. Vi styrer processen fra afklaring til aflevering, så beslutninger træffes på et oplyst grundlag – og udførelsen følger planen."
+            },
+            {
+              icon: CheckCircle2,
+              title: "Dokumenteret og korrekt udførelse",
+              desc: "Holdbarhed starter under overfladen. Vi prioriterer korrekt opbygning, materialevalg og faglig kontrol frem for hurtige løsninger. Det sikrer et resultat, der fungerer teknisk – også på lang sigt."
+            },
+            {
+              icon: Star,
+              title: "Gennemsigtig økonomi og aftalt levering",
+              desc: "Du får en afklaret ramme og fuld indsigt i økonomien. Ingen uklare tillæg. Ingen løbende improvisation. Målet er altid aflevering til aftalt tid, i høj kvalitet og fuldt ud inden for den fastlagte ramme."
+            }
           ].map((item, idx) => (
             <motion.div
               key={idx}
               variants={itemVariants}
-              className="p-8 bg-bg-soft rounded-3xl border border-gray-100 flex flex-col items-center text-center group cursor-default transition-all duration-500 hover:bg-white card-shadow"
+              className="p-8 md:p-10 bg-bg-soft rounded-[2.5rem] border border-gray-100 flex flex-col items-center text-center group cursor-default transition-all duration-500 hover:bg-white card-shadow"
             >
-              <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center text-primary shadow-sm mb-6 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3">
+              <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center text-primary shadow-sm mb-6 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3 border border-gray-50 flex-shrink-0">
                 <item.icon size={32} />
               </div>
-              <h3 className="text-xl font-display font-bold mb-3">{item.title}</h3>
-              <p className="text-gray-500 text-sm leading-relaxed">{item.desc}</p>
+              <h3 className="text-xl md:text-2xl lg:text-[1.35rem] xl:text-2xl font-display font-bold mb-3 leading-tight px-2">{item.title}</h3>
+              <p className="text-gray-500 text-sm md:text-base leading-relaxed opacity-90">{item.desc}</p>
             </motion.div>
           ))}
         </motion.div>
       </section>
+
 
       {/* Before/After or Project Showcase */}
       <section className="bg-primary py-24 text-white overflow-hidden">
@@ -119,8 +137,8 @@ const LandingPage = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="group relative h-[400px] rounded-3xl overflow-hidden">
               <img
-                src="https://images.unsplash.com/photo-1598902108854-10e335adac99?auto=format&fit=crop&q=80&w=1000"
-                alt="Projekt 1"
+                src="/images/moderne_terrasse.jpg"
+                alt="Moderne terrasse i Aarhus"
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 referrerPolicy="no-referrer"
               />
@@ -132,8 +150,8 @@ const LandingPage = () => {
             </div>
             <div className="group relative h-[400px] rounded-3xl overflow-hidden">
               <img
-                src="https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?auto=format&fit=crop&q=80&w=1000"
-                alt="Projekt 2"
+                src="/images/komplet_haveforvandling.jpg"
+                alt="Komplet haveforvandling i Skanderborg"
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 referrerPolicy="no-referrer"
               />

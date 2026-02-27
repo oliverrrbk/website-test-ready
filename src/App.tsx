@@ -47,12 +47,12 @@ const Navbar = () => {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className={`flex justify-between items-center transition-all duration-500 ${isScrolled ? 'h-16' : 'h-20'}`}>
-          <Link to="/" className="flex items-center space-x-2 group">
-            <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center transition-transform duration-300 group-hover:rotate-6">
-              <span className="text-white font-bold text-xl">GE</span>
+          <Link to="/" className="flex items-center group">
+            <div className="h-20 w-20 -ml-2 -mr-3 flex items-center justify-center transition-transform duration-300 group-hover:scale-105">
+              <img src="/logo-transparent.png" alt="Grønrum Anlæg Logo" className="w-full h-full object-contain" />
             </div>
             <span className="text-2xl font-display font-bold tracking-tight text-primary">
-              Grøn Elegance
+              Grønrum Anlæg
             </span>
           </Link>
 
@@ -131,12 +131,12 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
           <div className="col-span-1 md:col-span-1">
-            <Link to="/" className="flex items-center space-x-2 mb-6">
-              <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center">
-                <span className="text-primary font-bold text-xl">GE</span>
+            <Link to="/" className="flex items-center mb-6 group">
+              <div className="h-20 w-20 -ml-2 -mr-3 flex items-center justify-center transition-transform duration-300 group-hover:scale-105">
+                <img src="/logo-transparent.png" alt="Grønrum Anlæg Logo" className="w-full h-full object-contain brightness-0 invert opacity-90" />
               </div>
               <span className="text-2xl font-display font-bold text-white tracking-tight">
-                Grøn Elegance
+                Grønrum Anlæg
               </span>
             </Link>
             <p className="text-gray-300 text-sm leading-relaxed mb-6">
@@ -185,14 +185,14 @@ const Footer = () => {
               </li>
               <li className="flex items-center space-x-3">
                 <Mail size={18} className="text-accent" />
-                <a href="mailto:info@groenelegance.dk" className="hover:text-white transition-colors">info@groenelegance.dk</a>
+                <a href="mailto:info@grønrum.dk" className="hover:text-white transition-colors">info@grønrum.dk</a>
               </li>
             </ul>
           </div>
         </div>
 
         <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0 text-xs text-gray-400">
-          <p>© 2024 Grøn Elegance. Alle rettigheder forbeholdes.</p>
+          <p>© 2024 Grønrum Anlæg. Alle rettigheder forbeholdes.</p>
           <div className="flex space-x-6">
             <a href="#" className="hover:text-white transition-colors">Privatlivspolitik</a>
             <a href="#" className="hover:text-white transition-colors">Handelsbetingelser</a>

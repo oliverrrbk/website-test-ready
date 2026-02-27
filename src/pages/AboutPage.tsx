@@ -50,7 +50,7 @@ const AboutPage = () => {
             Vi tror på, at en have er mere end bare græs og fliser. Det er et frirum, et sted til fordybelse og et samlingspunkt for familien. Derfor lægger vi vores hjerte i hvert eneste projekt, uanset om det er en lille beskæringsopgave eller en totalrenovering af en herregårdshave.
           </p>
         </motion.div>
-        
+
         <motion.div
           initial={{ scale: 0.9, opacity: 0 }}
           whileInView={{ scale: 1, opacity: 1 }}
@@ -59,8 +59,8 @@ const AboutPage = () => {
         >
           <div className="aspect-square rounded-[3rem] overflow-hidden shadow-2xl">
             <img
-              src="https://images.unsplash.com/photo-1592419044706-39796d40f98c?auto=format&fit=crop&q=80&w=1000"
-              alt="Vores arbejde"
+              src="/images/about_hero.jpg"
+              alt="Grønrum Anlæg Holdet"
               className="w-full h-full object-cover"
               referrerPolicy="no-referrer"
             />
@@ -98,7 +98,7 @@ const AboutPage = () => {
                   />
                 </div>
               </div>
-              
+
               <div className="w-full lg:w-1/2 space-y-6">
                 <div>
                   <span className="text-accent font-bold uppercase tracking-widest text-sm mb-2 block">{member.role}</span>
