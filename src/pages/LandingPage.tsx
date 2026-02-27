@@ -1,6 +1,8 @@
 import { motion } from 'motion/react';
-import { Star, CheckCircle2, Phone, ArrowRight, ShieldCheck, Clock, MapPin } from 'lucide-react';
+import { Star, CheckCircle2, Phone, ArrowRight, ShieldCheck, Clock, MapPin, Trees, Leaf, Home, Building2, Sun, Droplets } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { MarqueeReviewsVertical } from '../components/MarqueeReviews';
+import { Marquee } from '../components/ui/marquee';
 
 const LandingPage = () => {
   const containerVariants = {
@@ -119,6 +121,36 @@ const LandingPage = () => {
         </motion.div>
       </section>
 
+      {/* Social Proof Marquee Section */}
+      <section className="py-12 border-b border-gray-100 bg-white">
+        <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-12 xl:px-24">
+          <p className="text-center text-sm font-medium text-gray-400 mb-8 tracking-wide">
+            Vi har blandt andet arbejdet for
+          </p>
+
+          <div className="relative flex overflow-hidden mask-edges">
+            <Marquee className="[--duration:120s] [--gap:4rem] md:[--gap:6rem]" pauseOnHover>
+              {[
+                { icon: Trees, name: "EcoBuild" },
+                { icon: Leaf, name: "Nordic Park" },
+                { icon: Building2, name: "UrbanGreen." },
+                { icon: Sun, name: "Flora & Co" },
+                { icon: Home, name: "Væksthusene" },
+                { icon: Droplets, name: "terra." },
+                { icon: Leaf, name: "GreenSpace" },
+                { icon: Trees, name: "Byhaven" },
+                { icon: Building2, name: "Park & Landskab" },
+                { icon: Sun, name: "Sommerlyst" }
+              ].map((Brand, idx) => (
+                <div key={idx} className="flex items-center space-x-3 text-xl md:text-2xl font-display font-bold text-gray-400 opacity-60 transition-all duration-300 hover:opacity-100 hover:text-gray-600 grayscale cursor-pointer px-4">
+                  <Brand.icon size={28} strokeWidth={2.5} />
+                  <span>{Brand.name}</span>
+                </div>
+              ))}
+            </Marquee>
+          </div>
+        </div>
+      </section>
 
       {/* Before/After or Project Showcase */}
       <section className="bg-primary py-24 text-white overflow-hidden">
@@ -164,6 +196,8 @@ const LandingPage = () => {
           </div>
         </div>
       </section>
+      {/* Vertical Marquee Customer Reviews Section */}
+      <MarqueeReviewsVertical />
 
       {/* Process Section */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
@@ -202,7 +236,6 @@ const LandingPage = () => {
           ))}
         </motion.div>
       </section>
-
       {/* CTA Section */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 section-spacing">
         <motion.div
