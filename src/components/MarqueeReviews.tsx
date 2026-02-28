@@ -75,7 +75,7 @@ const ReviewCard: React.FC<{
 
 export function MarqueeReviewsVertical() {
     return (
-        <section className="bg-bg-soft py-20 px-4 md:px-8 border-y border-gray-100">
+        <section className="bg-bg-soft pt-12 pb-12 md:pt-16 md:pb-16 px-4 md:px-8 border-y border-gray-100">
             <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
 
                 <div className="flex-1 text-center lg:text-left mb-8 lg:mb-0">

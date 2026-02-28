@@ -3,6 +3,7 @@ import { Star, CheckCircle2, Phone, ArrowRight, ShieldCheck, Clock, MapPin, Tree
 import { Link } from 'react-router-dom';
 import { MarqueeReviewsVertical } from '../components/MarqueeReviews';
 import { Marquee } from '../components/ui/marquee';
+import { ProcessTimeline } from '../components/ProcessTimeline';
 
 const LandingPage = () => {
   const containerVariants = {
@@ -81,7 +82,7 @@ const LandingPage = () => {
       </section>
 
       {/* Trust & Stats Section */}
-      <section className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-12 xl:px-24 section-spacing">
+      <section className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-12 xl:px-24 pt-16 pb-20 md:pt-24 md:pb-24">
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -114,12 +115,15 @@ const LandingPage = () => {
               <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center text-primary shadow-sm mb-6 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3 border border-gray-50 flex-shrink-0">
                 <item.icon size={32} />
               </div>
-              <h3 className="text-xl md:text-2xl lg:text-[1.35rem] xl:text-2xl font-display font-bold mb-3 leading-tight px-2">{item.title}</h3>
+              <h3 className="text-xl md:text-2xl lg:text-[1.35rem] xl:text-2xl font-display font-bold text-gray-900 mb-3 leading-tight px-2">{item.title}</h3>
               <p className="text-gray-500 text-sm md:text-base leading-relaxed opacity-90">{item.desc}</p>
             </motion.div>
           ))}
         </motion.div>
       </section>
+
+      {/* Vertical Marquee Customer Reviews Section */}
+      <MarqueeReviewsVertical />
 
       {/* Social Proof Marquee Section */}
       <section className="py-12 border-b border-gray-100 bg-white">
@@ -196,48 +200,11 @@ const LandingPage = () => {
           </div>
         </div>
       </section>
-      {/* Vertical Marquee Customer Reviews Section */}
-      <MarqueeReviewsVertical />
 
       {/* Process Section */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-        <div className="text-center max-w-3xl mx-auto mb-20">
-          <h2 className="text-4xl font-display font-bold mb-6">Sådan foregår det</h2>
-          <p className="text-gray-500 text-lg">En enkel og gennemsigtig proces fra første kontakt til færdig have.</p>
-        </div>
-
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          className="grid grid-cols-1 md:grid-cols-4 gap-8 relative"
-        >
-          {/* Connection Line */}
-          <div className="hidden md:block absolute top-1/2 left-0 right-0 h-0.5 bg-gray-100 -translate-y-1/2 z-0" />
-
-          {[
-            { step: "01", title: "Kontakt & Besigtigelse", desc: "Vi kommer forbi og kigger på din have og hører om dine ønsker." },
-            { step: "02", title: "Tilbud & Planlægning", desc: "Du modtager et fast tilbud og en tidsplan for projektet." },
-            { step: "03", title: "Udførelse", desc: "Vores erfarne gartnere går i gang og holder dig løbende opdateret." },
-            { step: "04", title: "Aflevering", desc: "Vi gennemgår resultatet sammen og sikrer, at alt er som aftalt." }
-          ].map((item, idx) => (
-            <motion.div
-              key={idx}
-              variants={itemVariants}
-              className="relative z-10 bg-white p-6 rounded-2xl text-center shadow-sm border border-gray-50 group transition-all duration-500 hover:shadow-xl hover:-translate-y-2"
-            >
-              <div className="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center font-bold mx-auto mb-6 shadow-lg transition-transform duration-500 group-hover:scale-110">
-                {item.step}
-              </div>
-              <h4 className="text-lg font-display font-bold mb-3">{item.title}</h4>
-              <p className="text-gray-500 text-sm leading-relaxed">{item.desc}</p>
-            </motion.div>
-          ))}
-        </motion.div>
-      </section>
+      <ProcessTimeline />
       {/* CTA Section */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 section-spacing">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
         <motion.div
           initial={{ scale: 0.95, opacity: 0 }}
           whileInView={{ scale: 1, opacity: 1 }}
