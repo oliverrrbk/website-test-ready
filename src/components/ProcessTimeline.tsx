@@ -75,7 +75,7 @@ export const ProcessTimeline = () => {
             transition={{ delay: 0.2 }}
             className="text-gray-500 text-lg leading-relaxed"
           >
-            En gennemprøvet proces der sikrer resultater fra dag ét.
+            En enkel og gennemsigtig proces – fra første kontakt til færdig have.
           </motion.p>
         </div>
 
