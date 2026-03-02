@@ -135,14 +135,13 @@ export const ProcessTimeline = () => {
                     <h3 className="font-display text-xl md:text-2xl font-bold mb-2 text-gray-900">{step.title}</h3>
                     <p className="leading-relaxed text-sm md:text-base text-gray-500">{step.desc}</p>
 
-                    <div className="mt-5 h-0.5 bg-gray-100 rounded-full overflow-hidden">
+                    <div className={`mt-5 h-0.5 bg-gray-100 rounded-full overflow-hidden flex ${step.align === 'right' ? 'justify-end' : 'justify-start'}`}>
                       <motion.div
-                        initial={{ scaleX: 0 }}
-                        whileInView={{ scaleX: 1 }}
+                        initial={{ width: 0 }}
+                        whileInView={{ width: "100%" }}
                         viewport={{ once: false, margin: "-100px" }}
                         transition={{ duration: 0.6, delay: 0.3 }}
-                        className="h-full bg-primary rounded-full transition-transform"
-                        style={{ transformOrigin: step.align === 'right' ? 'right center' : 'left center' }}
+                        className="h-full bg-primary rounded-full"
                       />
                     </div>
                   </motion.div>
