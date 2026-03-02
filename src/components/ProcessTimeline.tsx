@@ -112,7 +112,7 @@ export const ProcessTimeline = () => {
                   <motion.div
                     initial={{ scale: 0, backgroundColor: 'var(--color-bg-soft)' }}
                     whileInView={{ scale: 1, backgroundColor: 'var(--color-primary)' }}
-                    viewport={{ once: false, margin: "-100px" }}
+                    viewport={{ once: false, margin: "10000px 0px -100px 0px" }}
                     transition={{ duration: 0.4 }}
                     className="relative w-14 h-14 md:w-16 md:h-16 rounded-xl flex items-center justify-center text-white shadow-lg border-2 border-primary/20"
                   >
@@ -125,7 +125,7 @@ export const ProcessTimeline = () => {
                   <motion.div
                     initial={{ opacity: 0, x: step.align === 'right' ? -20 : 20 }}
                     whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true, margin: "-100px" }}
+                    viewport={{ once: false, margin: "10000px 0px -100px 0px" }}
                     transition={{ duration: 0.5, delay: 0.2 }}
                     className="p-6 md:p-8 rounded-2xl bg-white border border-gray-100 shadow-sm transition-all duration-300 hover:shadow-md"
                   >
@@ -139,7 +139,7 @@ export const ProcessTimeline = () => {
                       <motion.div
                         initial={{ width: 0 }}
                         whileInView={{ width: "100%" }}
-                        viewport={{ once: false, margin: "-100px" }}
+                        viewport={{ once: false, margin: "10000px 0px -100px 0px" }}
                         transition={{ duration: 0.6, delay: 0.3 }}
                         className="h-full bg-primary rounded-full"
                       />
