@@ -1,5 +1,5 @@
-import React, { useRef } from 'react';
-import { motion, useScroll, useSpring } from 'motion/react';
+import React, { useRef, useState } from 'react';
+import { motion, useScroll, useSpring, useMotionValueEvent } from 'motion/react';
 import { Check, ArrowRight } from 'lucide-react';
 
 const steps = [
@@ -28,6 +28,83 @@ const steps = [
     align: "left"
   }
 ];
+
+const StepItem = ({ step }: { step: any }) => {
+  const ref = useRef<HTMLDivElement>(null);
+  const [isActive, setIsActive] = useState(false);
+
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start 85%", "start 0%"]
+  });
+
+  useMotionValueEvent(scrollYProgress, "change", (latest) => {
+    if (latest > 0) {
+      setIsActive(true);
+    } else {
+      setIsActive(false);
+    }
+  });
+
+  const variantsIcon = {
+    hidden: { scale: 0, backgroundColor: 'var(--color-bg-soft)' },
+    visible: { scale: 1, backgroundColor: 'var(--color-primary)' }
+  };
+
+  const variantsCard = {
+    hidden: { opacity: 0, x: step.align === 'right' ? -20 : 20 },
+    visible: { opacity: 1, x: 0 }
+  };
+
+  const variantsLine = {
+    hidden: { width: 0 },
+    visible: { width: "100%" }
+  };
+
+  return (
+    <div ref={ref} className={`relative flex items-center gap-6 ${step.align === 'right' ? 'md:flex-row flex-row' : 'md:flex-row-reverse flex-row'}`}>
+      {/* Icon Marker */}
+      <div className={`relative z-10 flex-shrink-0 ${step.align === 'right' ? 'md:ml-auto ml-0' : 'md:mr-auto ml-0'}`}>
+        <motion.div
+          variants={variantsIcon}
+          initial="hidden"
+          animate={isActive ? "visible" : "hidden"}
+          transition={{ duration: 0.4 }}
+          className="relative w-14 h-14 md:w-16 md:h-16 rounded-xl flex items-center justify-center text-white shadow-lg border-2 border-primary/20"
+        >
+          <Check className="w-6 h-6 md:w-8 md:h-8 text-white" />
+        </motion.div>
+      </div>
+
+      {/* Card */}
+      <div className={`flex-1 max-w-md ${step.align === 'right' ? 'md:text-right md:pr-6 pl-4 md:pl-0' : 'md:text-left md:pl-6 pl-4 md:pl-0'}`}>
+        <motion.div
+          variants={variantsCard}
+          initial="hidden"
+          animate={isActive ? "visible" : "hidden"}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          className="p-6 md:p-8 rounded-2xl bg-white border border-gray-100 shadow-sm transition-all duration-300 hover:shadow-md"
+        >
+          <div className={`flex items-center gap-2 mb-3 ${step.align === 'right' ? 'md:justify-end' : ''}`}>
+            <span className="text-xs font-mono text-accent font-bold uppercase tracking-wider">Step {step.num}</span>
+          </div>
+          <h3 className="font-display text-xl md:text-2xl font-bold mb-2 text-gray-900">{step.title}</h3>
+          <p className="leading-relaxed text-sm md:text-base text-gray-500">{step.desc}</p>
+
+          <div className={`mt-5 h-0.5 bg-gray-100 rounded-full overflow-hidden flex ${step.align === 'right' ? 'justify-end' : 'justify-start'}`}>
+            <motion.div
+              variants={variantsLine}
+              initial="hidden"
+              animate={isActive ? "visible" : "hidden"}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="h-full bg-primary rounded-full"
+            />
+          </div>
+        </motion.div>
+      </div>
+    </div>
+  );
+};
 
 export const ProcessTimeline = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -106,47 +183,7 @@ export const ProcessTimeline = () => {
 
           <div className="space-y-16 md:space-y-24">
             {steps.map((step, idx) => (
-              <div key={idx} className={`relative flex items-center gap-6 ${step.align === 'right' ? 'md:flex-row flex-row' : 'md:flex-row-reverse flex-row'}`}>
-                {/* Icon Marker */}
-                <div className={`relative z-10 flex-shrink-0 ${step.align === 'right' ? 'md:ml-auto ml-0' : 'md:mr-auto ml-0'}`}>
-                  <motion.div
-                    initial={{ scale: 0, backgroundColor: 'var(--color-bg-soft)' }}
-                    whileInView={{ scale: 1, backgroundColor: 'var(--color-primary)' }}
-                    viewport={{ once: false, margin: "10000px 0px -100px 0px" }}
-                    transition={{ duration: 0.4 }}
-                    className="relative w-14 h-14 md:w-16 md:h-16 rounded-xl flex items-center justify-center text-white shadow-lg border-2 border-primary/20"
-                  >
-                    <Check className="w-6 h-6 md:w-8 md:h-8 text-white" />
-                  </motion.div>
-                </div>
-
-                {/* Card */}
-                <div className={`flex-1 max-w-md ${step.align === 'right' ? 'md:text-right md:pr-6 pl-4 md:pl-0' : 'md:text-left md:pl-6 pl-4 md:pl-0'}`}>
-                  <motion.div
-                    initial={{ opacity: 0, x: step.align === 'right' ? -20 : 20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: false, margin: "10000px 0px -100px 0px" }}
-                    transition={{ duration: 0.5, delay: 0.2 }}
-                    className="p-6 md:p-8 rounded-2xl bg-white border border-gray-100 shadow-sm transition-all duration-300 hover:shadow-md"
-                  >
-                    <div className={`flex items-center gap-2 mb-3 ${step.align === 'right' ? 'md:justify-end' : ''}`}>
-                      <span className="text-xs font-mono text-accent font-bold uppercase tracking-wider">Step {step.num}</span>
-                    </div>
-                    <h3 className="font-display text-xl md:text-2xl font-bold mb-2 text-gray-900">{step.title}</h3>
-                    <p className="leading-relaxed text-sm md:text-base text-gray-500">{step.desc}</p>
-
-                    <div className={`mt-5 h-0.5 bg-gray-100 rounded-full overflow-hidden flex ${step.align === 'right' ? 'justify-end' : 'justify-start'}`}>
-                      <motion.div
-                        initial={{ width: 0 }}
-                        whileInView={{ width: "100%" }}
-                        viewport={{ once: false, margin: "10000px 0px -100px 0px" }}
-                        transition={{ duration: 0.6, delay: 0.3 }}
-                        className="h-full bg-primary rounded-full"
-                      />
-                    </div>
-                  </motion.div>
-                </div>
-              </div>
+              <StepItem key={idx} step={step} />
             ))}
           </div>
         </div>
