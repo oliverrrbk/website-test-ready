@@ -18,6 +18,7 @@ import LandingPage from './pages/LandingPage';
 import ServicesPage from './pages/ServicesPage';
 import AboutPage from './pages/AboutPage';
 import ContactPage from './pages/ContactPage';
+import LandscaperCursorAnimation from './components/LandscaperCursorAnimation';
 
 // Components
 const Navbar = () => {
@@ -216,6 +217,7 @@ export default function App() {
   return (
     <Router>
       <ScrollToTop />
+      <LandscaperCursorAnimation />
       <div className="min-h-screen flex flex-col">
         <Navbar />
         <main className="flex-grow pt-32">
