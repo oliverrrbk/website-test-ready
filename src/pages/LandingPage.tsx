@@ -11,18 +11,17 @@ const containerVariants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.15,
-      delayChildren: 0.3
+      staggerChildren: 0.3,
+      delayChildren: 0.4
     }
   }
 };
 
 const itemVariants = {
-  hidden: { y: typeof window !== 'undefined' && window.innerWidth < 1024 ? 0 : 30, opacity: 0 },
+  hidden: { opacity: 0 },
   visible: {
-    y: 0,
     opacity: 1,
-    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] }
+    transition: { duration: 1.2, ease: "easeInOut" }
   }
 };
 
@@ -40,7 +39,7 @@ const LandingPage = () => {
       <motion.div
         initial={{ opacity: 1 }}
         animate={{ opacity: 0 }}
-        transition={{ duration: 1.2, ease: "easeInOut", delay: 0.2 }}
+        transition={{ duration: 1.0, ease: "easeInOut", delay: 0.7 }}
         className="fixed inset-0 z-[99999] bg-white pointer-events-none"
       />
 
