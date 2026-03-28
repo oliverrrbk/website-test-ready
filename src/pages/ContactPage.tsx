@@ -27,14 +27,18 @@ const ContactPage = () => {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
         {/* Left Side: Info */}
         <div className="space-y-12">
-          <div>
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+          >
             <h1 className="text-5xl md:text-6xl font-display font-bold text-primary mb-8 leading-tight">
               Lad os tage en snak om <span className="text-accent">din have</span>
             </h1>
             <p className="text-lg text-gray-500 leading-relaxed">
               Udfyld formularen, så kontakter vi dig inden for 24 timer for at aftale en tid til en uforpligtende besigtigelse.
             </p>
-          </div>
+          </motion.div>
 
           <div className="space-y-6">
             <h3 className="text-xl font-display font-bold text-primary">Hvad du kan forvente:</h3>

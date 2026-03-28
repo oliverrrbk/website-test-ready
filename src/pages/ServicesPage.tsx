@@ -1,4 +1,5 @@
 import { motion } from 'motion/react';
+import { useState } from 'react';
 import { ArrowUpRight, CheckCircle2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
@@ -56,6 +57,7 @@ const itemVariants = {
 };
 
 const ServicesPage = () => {
+  const [activeSpecial, setActiveSpecial] = useState(false);
 
   return (
     <motion.div
@@ -66,14 +68,19 @@ const ServicesPage = () => {
     >
       {/* Header */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-20 space-y-8 md:space-y-0">
-        <div className="max-w-2xl">
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="max-w-2xl"
+        >
           <div className="inline-flex items-center space-x-2 bg-accent-light px-4 py-2 rounded-full mb-6">
             <span className="text-primary text-sm font-bold uppercase tracking-wider">Vores ydelser</span>
           </div>
           <h1 className="text-5xl md:text-6xl font-display font-bold text-primary leading-tight">
             Hvad vi kan gøre <br /> <span className="text-accent">for dig</span>
           </h1>
-        </div>
+        </motion.div>
         <div className="max-w-md">
           <p className="text-gray-500 text-lg leading-relaxed mb-8">
             Fra design til installation tilbyder vi kvalitetsløsninger skræddersyet til dine behov. Vi går aldrig på kompromis med kvaliteten.
@@ -130,10 +137,17 @@ const ServicesPage = () => {
           variants={itemVariants}
           className="bg-primary rounded-[2.5rem] p-10 text-white flex flex-col justify-center items-center text-center space-y-8 relative overflow-hidden group shadow-xl"
         >
-          <div className="absolute top-0 right-0 w-32 h-32 bg-accent/10 rounded-full -translate-y-1/2 translate-x-1/2 blur-2xl group-hover:scale-150 transition-transform duration-700" />
+          <motion.div 
+            className="absolute inset-y-1/3 inset-x-0 pointer-events-none z-20"
+            onViewportEnter={() => { if (window.innerWidth < 1024) setActiveSpecial(true); }}
+            onViewportLeave={() => { if (window.innerWidth < 1024) setActiveSpecial(false); }}
+            viewport={{ amount: 1 }}
+          />
 
-          <div className="w-20 h-20 bg-accent rounded-3xl flex items-center justify-center rotate-12 transition-transform duration-500 group-hover:rotate-0">
-            <ArrowUpRight size={40} className="text-primary -rotate-12 transition-transform duration-500 group-hover:rotate-0" />
+          <div className={`absolute top-0 right-0 w-32 h-32 bg-accent/10 rounded-full -translate-y-1/2 translate-x-1/2 blur-2xl transition-transform duration-700 lg:group-hover:scale-150 ${activeSpecial ? 'scale-150' : ''}`} />
+
+          <div className={`w-20 h-20 bg-accent rounded-3xl flex items-center justify-center transition-transform duration-500 lg:group-hover:rotate-0 ${activeSpecial ? 'rotate-0' : 'rotate-12'}`}>
+            <ArrowUpRight size={40} className={`text-primary transition-transform duration-500 lg:group-hover:rotate-0 ${activeSpecial ? 'rotate-0' : '-rotate-12'}`} />
           </div>
           <div>
             <h3 className="text-2xl font-display font-bold mb-4">Har du en speciel opgave?</h3>

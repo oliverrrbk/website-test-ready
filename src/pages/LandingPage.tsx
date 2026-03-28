@@ -36,6 +36,14 @@ const LandingPage = () => {
       exit={{ opacity: 0 }}
       className="space-y-0 pb-20"
     >
+      {/* Page Load White Fade Effect */}
+      <motion.div
+        initial={{ opacity: 1 }}
+        animate={{ opacity: 0 }}
+        transition={{ duration: 1.2, ease: "easeInOut", delay: 0.2 }}
+        className="fixed inset-0 z-[99999] bg-white pointer-events-none"
+      />
+
       {/* Hero Section */}
       <section className="relative min-h-[85svh] md:min-h-0 md:h-[80vh] py-20 md:py-0 flex items-center overflow-hidden mt-8 md:mt-12 mx-4 sm:mx-6 lg:mx-8 rounded-[2rem] md:rounded-[3rem] shadow-2xl">
         <div className="absolute inset-0 z-0">
