@@ -96,7 +96,7 @@ export function MarqueeReviewsVertical() {
                     </motion.p>
                 </div>
 
-                <div className="w-full mx-auto flex h-[380px] max-h-[380px] md:h-[600px] md:max-h-[600px] flex-row items-center justify-center overflow-hidden relative shrink-0">
+                <div className="w-full lg:flex-1 mx-auto flex h-[380px] max-h-[380px] md:h-[600px] md:max-h-[600px] flex-row items-center justify-center overflow-hidden relative">
                     <Marquee pauseOnHover vertical className="[--duration:30s]">
                         {firstRow.map((review) => (
                             <ReviewCard key={review.username} img={review.img} name={review.name} username={review.username} body={review.body} />
