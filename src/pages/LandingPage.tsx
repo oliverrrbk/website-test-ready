@@ -6,28 +6,28 @@ import { MarqueeReviewsVertical } from '../components/MarqueeReviews';
 import { Marquee } from '../components/ui/marquee';
 import { ProcessTimeline } from '../components/ProcessTimeline';
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+      delayChildren: 0.3
+    }
+  }
+};
+
+const itemVariants = {
+  hidden: { y: 30, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] }
+  }
+};
+
 const LandingPage = () => {
   const [activeUsp, setActiveUsp] = useState<number | null>(null);
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.3
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { y: 30, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] }
-    }
-  };
 
   return (
     <motion.div
@@ -56,19 +56,19 @@ const LandingPage = () => {
             variants={itemVariants}
             className="max-width-2xl"
           >
-            <div className="inline-flex items-center space-x-2 bg-white/10 backdrop-blur-md px-3 py-1.5 md:px-4 md:py-2 rounded-full mb-4 md:mb-6 border border-white/20">
+            <div className="inline-flex items-center space-x-2 bg-white/10 backdrop-blur-md px-3 py-1.5 md:px-4 md:py-2 rounded-full mb-8 md:mb-6 border border-white/20">
               <Star className="text-accent fill-accent" size={14} />
               <span className="text-xs md:text-sm font-medium">4.9/5 Google Rating</span>
             </div>
-            <h1 className="text-[32px] leading-[1.15] sm:text-4xl md:text-7xl font-display font-bold md:leading-tight mb-4 md:mb-6">
+            <h1 className="text-[32px] leading-[1.15] sm:text-4xl md:text-7xl font-display font-bold md:leading-tight mb-8 md:mb-6">
               Større udeprojekter kræver styring <br />
               <span className="text-accent">– ikke tilfældigheder</span>
             </h1>
-            <p className="text-base md:text-xl text-gray-200 mb-6 md:mb-10 max-w-4xl leading-relaxed">
+            <p className="text-base md:text-xl text-gray-200 mb-12 md:mb-10 max-w-4xl leading-relaxed">
 
               Grønrum Anlæg er den strukturerede anlægspartner for bygherrer, der vil gennemføre større udeprojekter kontrolleret, dokumenteret og til aftalt tid.
             </p>
-            <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6">
+            <div className="flex flex-col sm:flex-row space-y-6 sm:space-y-0 sm:space-x-6">
               <Link to="/kontakt" className="btn-primary text-sm md:text-base py-3 md:py-4 text-center flex items-center justify-center space-x-2 shadow-[0_0_20px_rgba(255,255,255,0.1)] border border-white/10 hover:border-accent/50 transition-all">
                 <span>Se hvordan vi styrer projekter</span>
                 <ArrowRight size={18} />
@@ -113,19 +113,18 @@ const LandingPage = () => {
             <motion.div
               key={idx}
               variants={itemVariants}
-              onViewportEnter={() => {
-                if (window.innerWidth < 1024) setActiveUsp(idx);
-              }}
-              onViewportLeave={() => {
-                if (window.innerWidth < 1024 && activeUsp === idx) setActiveUsp(null);
-              }}
-              viewport={{ amount: 0.6, margin: "-10% 0px -10% 0px" }}
               onClick={() => {
                 if (window.innerWidth < 1024) setActiveUsp(idx === activeUsp ? null : idx);
               }}
-              className={`p-8 md:p-10 rounded-[2.5rem] border border-gray-100 flex flex-col items-center text-center group cursor-default transition-all duration-500 hover:bg-white card-shadow ${activeUsp === idx ? 'bg-white' : 'bg-bg-soft'}`}
+              className={`relative p-8 md:p-10 rounded-[2.5rem] border border-gray-100 flex flex-col items-center text-center group cursor-default transition-all duration-500 hover:bg-white card-shadow ${activeUsp === idx ? 'bg-white' : 'bg-bg-soft'}`}
             >
-              <div className={`w-16 h-16 rounded-2xl flex items-center justify-center text-primary shadow-sm mb-6 transition-transform duration-500 border flex-shrink-0 group-hover:scale-110 group-hover:rotate-3 ${activeUsp === idx ? 'scale-110 rotate-3 bg-white border-gray-100' : 'bg-white border-gray-50'}`}>
+              <motion.div 
+                className="absolute inset-y-1/4 inset-x-0 pointer-events-none"
+                onViewportEnter={() => { if (window.innerWidth < 1024) setActiveUsp(idx); }}
+                onViewportLeave={() => { if (window.innerWidth < 1024 && activeUsp === idx) setActiveUsp(null); }}
+                viewport={{ amount: 1 }}
+              />
+              <div className={`relative z-10 w-16 h-16 rounded-2xl flex items-center justify-center text-primary shadow-sm mb-6 transition-transform duration-500 border flex-shrink-0 group-hover:scale-110 group-hover:rotate-3 ${activeUsp === idx ? 'scale-110 rotate-3 bg-white border-gray-100' : 'bg-white border-gray-50'}`}>
                 <item.icon size={32} />
               </div>
               <h3 className="text-xl md:text-2xl lg:text-[1.35rem] xl:text-2xl font-display font-bold text-gray-900 mb-3 leading-tight px-2">{item.title}</h3>
