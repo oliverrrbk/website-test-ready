@@ -116,7 +116,7 @@ const LandingPage = () => {
               onClick={() => {
                 if (window.innerWidth < 1024) setActiveUsp(idx === activeUsp ? null : idx);
               }}
-              className={`relative p-8 md:p-10 rounded-[2.5rem] border border-gray-100 flex flex-col items-center text-center group cursor-default transition-all duration-500 hover:bg-white card-shadow ${activeUsp === idx ? 'bg-white' : 'bg-bg-soft'}`}
+              className={`relative p-8 md:p-10 rounded-[2.5rem] border border-gray-100 flex flex-col items-center text-center group cursor-default transition-colors duration-500 hover:bg-white card-shadow ${activeUsp === idx ? 'bg-white' : 'bg-bg-soft'}`}
             >
               <motion.div 
                 className="absolute inset-y-1/4 inset-x-0 pointer-events-none"

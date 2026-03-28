@@ -96,7 +96,7 @@ const ServicesPage = () => {
           <motion.div
             key={idx}
             variants={itemVariants}
-            className="group relative bg-white rounded-[2.5rem] overflow-hidden card-shadow border border-gray-100 flex flex-col h-full transition-all duration-500"
+            className="group relative bg-white rounded-[2.5rem] overflow-hidden card-shadow border border-gray-100 flex flex-col h-full"
           >
             <div className="relative h-64 overflow-hidden">
               <img
