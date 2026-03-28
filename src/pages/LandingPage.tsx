@@ -18,7 +18,7 @@ const containerVariants = {
 };
 
 const itemVariants = {
-  hidden: { y: 30, opacity: 0 },
+  hidden: { y: typeof window !== 'undefined' && window.innerWidth < 1024 ? 0 : 30, opacity: 0 },
   visible: {
     y: 0,
     opacity: 1,

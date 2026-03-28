@@ -38,7 +38,7 @@ const StepItem = ({ step }: { step: any }) => {
   });
 
   // Calculate strict scroll-bound CSS variables directly (zero-lag interpolation)
-  const barWidth = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
+  const barProgress = useTransform(scrollYProgress, [0, 1], [0, 1]);
   const cardOpacity = scrollYProgress; // binds opacity directly: 0 to 1
   const cardX = useTransform(scrollYProgress, [0, 1], [step.align === 'right' ? -30 : 30, 0]);
   
@@ -70,10 +70,13 @@ const StepItem = ({ step }: { step: any }) => {
           <h3 className="font-display text-xl md:text-2xl font-bold mb-2 text-gray-900">{step.title}</h3>
           <p className="leading-relaxed text-sm md:text-base text-gray-500">{step.desc}</p>
 
-          <div className={`mt-5 h-0.5 bg-gray-100 rounded-full overflow-hidden flex ${step.align === 'right' ? 'justify-end' : 'justify-start'}`}>
+          <div className="mt-5 h-0.5 bg-gray-100 rounded-full overflow-hidden w-full relative">
             <motion.div
-              style={{ width: barWidth }}
-              className="h-full bg-primary rounded-full transition-none"
+              style={{ 
+                scaleX: barProgress, 
+                transformOrigin: step.align === 'right' ? 'right' : 'left' 
+              }}
+              className="absolute inset-0 bg-primary rounded-full transition-none"
             />
           </div>
         </motion.div>
@@ -98,7 +101,7 @@ export const ProcessTimeline = () => {
 
   return (
     <section data-section="process" className="pt-16 pb-16 md:pt-20 md:pb-20 bg-bg-soft text-gray-900 relative overflow-hidden">
-      <div className="absolute inset-0 pointer-events-none">
+      <div className="absolute inset-0 pointer-events-none hidden md:block">
         <div className="absolute top-1/4 left-1/3 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[150px]"></div>
       </div>
       <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-12 xl:px-24 relative">
