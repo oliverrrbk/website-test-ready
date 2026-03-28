@@ -12,6 +12,8 @@ import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react
 import { motion, AnimatePresence } from 'motion/react';
 import { Phone, Mail, MapPin, Instagram, Facebook, Star, CheckCircle2, Menu, X, ArrowRight } from 'lucide-react';
 import { useState, useEffect } from 'react';
+import { ReactLenis } from 'lenis/react';
+import 'lenis/dist/lenis.css';
 
 // Pages
 import LandingPage from './pages/LandingPage';
@@ -215,23 +217,25 @@ const ScrollToTop = () => {
 
 export default function App() {
   return (
-    <Router>
-      <ScrollToTop />
-      <LandscaperCursorAnimation />
-      <div className="min-h-screen flex flex-col">
-        <Navbar />
-        <main className="flex-grow pt-32">
-          <AnimatePresence mode="wait">
-            <Routes>
-              <Route path="/" element={<LandingPage />} />
-              <Route path="/ydelser" element={<ServicesPage />} />
-              <Route path="/om-os" element={<AboutPage />} />
-              <Route path="/kontakt" element={<ContactPage />} />
-            </Routes>
-          </AnimatePresence>
-        </main>
-        <Footer />
-      </div>
-    </Router>
+    <ReactLenis root options={{ lerp: 0.1, duration: 1.5, smoothWheel: true }}>
+      <Router>
+        <ScrollToTop />
+        <LandscaperCursorAnimation />
+        <div className="min-h-screen flex flex-col">
+          <Navbar />
+          <main className="flex-grow pt-32">
+            <AnimatePresence mode="wait">
+              <Routes>
+                <Route path="/" element={<LandingPage />} />
+                <Route path="/ydelser" element={<ServicesPage />} />
+                <Route path="/om-os" element={<AboutPage />} />
+                <Route path="/kontakt" element={<ContactPage />} />
+              </Routes>
+            </AnimatePresence>
+          </main>
+          <Footer />
+        </div>
+      </Router>
+    </ReactLenis>
   );
 }

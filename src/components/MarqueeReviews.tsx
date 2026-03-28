@@ -55,12 +55,12 @@ const ReviewCard: React.FC<{
     return (
         <figure
             className={cn(
-                "group/card relative w-72 md:w-80 cursor-pointer overflow-hidden rounded-xl border p-6 m-2",
+                "group/card relative w-[42vw] md:w-80 cursor-pointer overflow-hidden rounded-xl border p-4 md:p-6 m-1 md:m-2",
                 "border-gray-100 bg-white shadow-sm transition-all duration-300 card-shadow",
             )}
         >
-            <div className="flex flex-row items-center gap-4">
-                <img className="rounded-full w-12 h-12 object-cover border-2 border-primary/10 transition-colors duration-300 group-hover/card:border-accent" alt={name} src={img} />
+            <div className="flex flex-row items-center gap-2 md:gap-4">
+                <img className="rounded-full w-10 h-10 md:w-12 md:h-12 object-cover border-2 border-primary/10 transition-colors duration-300 group-hover/card:border-accent" alt={name} src={img} />
                 <div className="flex flex-col">
                     <figcaption className="text-base font-semibold text-gray-900 font-display tracking-tight transition-colors duration-300 group-hover/card:text-accent">
                         {name}
@@ -68,7 +68,7 @@ const ReviewCard: React.FC<{
                     <p className="text-[13px] font-medium text-gray-500 transition-colors duration-300 group-hover/card:text-accent/80">{username}</p>
                 </div>
             </div>
-            <blockquote className="mt-4 text-gray-700 leading-relaxed text-sm md:text-[15px] transition-colors duration-300 group-hover/card:text-accent">"{body}"</blockquote>
+            <blockquote className="mt-3 md:mt-4 text-gray-700 leading-relaxed text-xs md:text-[15px] transition-colors duration-300 group-hover/card:text-accent">"{body}"</blockquote>
         </figure>
     );
 };
@@ -96,7 +96,7 @@ export function MarqueeReviewsVertical() {
                     </motion.p>
                 </div>
 
-                <div className="flex-1 w-full mx-auto flex h-[500px] md:h-[600px] flex-row items-center justify-center overflow-hidden relative">
+                <div className="w-full mx-auto flex h-[380px] max-h-[380px] md:h-[600px] md:max-h-[600px] flex-row items-center justify-center overflow-hidden relative shrink-0">
                     <Marquee pauseOnHover vertical className="[--duration:30s]">
                         {firstRow.map((review) => (
                             <ReviewCard key={review.username} img={review.img} name={review.name} username={review.username} body={review.body} />

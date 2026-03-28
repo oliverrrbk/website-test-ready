@@ -1,4 +1,5 @@
 import { motion } from 'motion/react';
+import { useState } from 'react';
 import { Star, CheckCircle2, Phone, ArrowRight, ShieldCheck, Clock, MapPin, Trees, Leaf, Home, Building2, Sun, Droplets } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { MarqueeReviewsVertical } from '../components/MarqueeReviews';
@@ -6,6 +7,8 @@ import { Marquee } from '../components/ui/marquee';
 import { ProcessTimeline } from '../components/ProcessTimeline';
 
 const LandingPage = () => {
+  const [activeUsp, setActiveUsp] = useState<number | null>(null);
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -34,7 +37,7 @@ const LandingPage = () => {
       className="space-y-0 pb-20"
     >
       {/* Hero Section */}
-      <section className="relative h-[80vh] flex items-center overflow-hidden mt-8 md:mt-12 mx-4 sm:mx-6 lg:mx-8 rounded-[2rem] md:rounded-[3rem] shadow-2xl">
+      <section className="relative min-h-[85svh] md:min-h-0 md:h-[80vh] py-20 md:py-0 flex items-center overflow-hidden mt-8 md:mt-12 mx-4 sm:mx-6 lg:mx-8 rounded-[2rem] md:rounded-[3rem] shadow-2xl">
         <div className="absolute inset-0 z-0">
           <video
             autoPlay
@@ -53,26 +56,26 @@ const LandingPage = () => {
             variants={itemVariants}
             className="max-width-2xl"
           >
-            <div className="inline-flex items-center space-x-2 bg-white/10 backdrop-blur-md px-4 py-2 rounded-full mb-6 border border-white/20">
-              <Star className="text-accent fill-accent" size={16} />
-              <span className="text-sm font-medium">4.9/5 Google Rating</span>
+            <div className="inline-flex items-center space-x-2 bg-white/10 backdrop-blur-md px-3 py-1.5 md:px-4 md:py-2 rounded-full mb-4 md:mb-6 border border-white/20">
+              <Star className="text-accent fill-accent" size={14} />
+              <span className="text-xs md:text-sm font-medium">4.9/5 Google Rating</span>
             </div>
-            <h1 className="text-5xl md:text-7xl font-display font-bold leading-tight mb-6">
+            <h1 className="text-[32px] leading-[1.15] sm:text-4xl md:text-7xl font-display font-bold md:leading-tight mb-4 md:mb-6">
               Større udeprojekter kræver styring <br />
               <span className="text-accent">– ikke tilfældigheder</span>
             </h1>
-            <p className="text-xl text-gray-200 mb-10 max-w-4xl leading-relaxed">
+            <p className="text-base md:text-xl text-gray-200 mb-6 md:mb-10 max-w-4xl leading-relaxed">
 
               Grønrum Anlæg er den strukturerede anlægspartner for bygherrer, der vil gennemføre større udeprojekter kontrolleret, dokumenteret og til aftalt tid.
             </p>
             <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6">
-              <Link to="/kontakt" className="btn-primary text-center flex items-center justify-center space-x-2 shadow-[0_0_20px_rgba(255,255,255,0.1)] border border-white/10 hover:border-accent/50 transition-all">
+              <Link to="/kontakt" className="btn-primary text-sm md:text-base py-3 md:py-4 text-center flex items-center justify-center space-x-2 shadow-[0_0_20px_rgba(255,255,255,0.1)] border border-white/10 hover:border-accent/50 transition-all">
                 <span>Se hvordan vi styrer projekter</span>
                 <ArrowRight size={18} />
               </Link>
-              <a href="tel:+4512345678" className="flex items-center justify-center space-x-4 text-xl font-semibold text-white hover:text-accent transition-all group">
-                <div className="w-14 h-14 bg-white/15 backdrop-blur-xl rounded-full flex items-center justify-center border border-white/25 group-hover:border-accent group-hover:bg-white/25 transition-all shadow-lg">
-                  <Phone size={24} className="group-hover:animate-pulse" />
+              <a href="tel:+4512345678" className="flex items-center justify-center space-x-3 md:space-x-4 text-base md:text-xl font-semibold text-white hover:text-accent transition-all group">
+                <div className="w-12 h-12 md:w-14 md:h-14 bg-white/15 backdrop-blur-xl rounded-full flex items-center justify-center border border-white/25 group-hover:border-accent group-hover:bg-white/25 transition-all shadow-lg">
+                  <Phone size={20} className="md:w-6 md:h-6 group-hover:animate-pulse" />
                 </div>
                 <span>Ring os op</span>
               </a>
@@ -110,9 +113,19 @@ const LandingPage = () => {
             <motion.div
               key={idx}
               variants={itemVariants}
-              className="p-8 md:p-10 bg-bg-soft rounded-[2.5rem] border border-gray-100 flex flex-col items-center text-center group cursor-default transition-all duration-500 hover:bg-white card-shadow"
+              onViewportEnter={() => {
+                if (window.innerWidth < 1024) setActiveUsp(idx);
+              }}
+              onViewportLeave={() => {
+                if (window.innerWidth < 1024 && activeUsp === idx) setActiveUsp(null);
+              }}
+              viewport={{ amount: 0.6, margin: "-10% 0px -10% 0px" }}
+              onClick={() => {
+                if (window.innerWidth < 1024) setActiveUsp(idx === activeUsp ? null : idx);
+              }}
+              className={`p-8 md:p-10 rounded-[2.5rem] border border-gray-100 flex flex-col items-center text-center group cursor-default transition-all duration-500 hover:bg-white card-shadow ${activeUsp === idx ? 'bg-white' : 'bg-bg-soft'}`}
             >
-              <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center text-primary shadow-sm mb-6 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3 border border-gray-50 flex-shrink-0">
+              <div className={`w-16 h-16 rounded-2xl flex items-center justify-center text-primary shadow-sm mb-6 transition-transform duration-500 border flex-shrink-0 group-hover:scale-110 group-hover:rotate-3 ${activeUsp === idx ? 'scale-110 rotate-3 bg-white border-gray-100' : 'bg-white border-gray-50'}`}>
                 <item.icon size={32} />
               </div>
               <h3 className="text-xl md:text-2xl lg:text-[1.35rem] xl:text-2xl font-display font-bold text-gray-900 mb-3 leading-tight px-2">{item.title}</h3>
@@ -216,13 +229,14 @@ const LandingPage = () => {
           <div className="absolute bottom-0 left-0 w-40 h-40 bg-primary/5 rounded-full translate-y-1/2 -translate-x-1/2 blur-2xl" />
 
           <div className="relative z-10 max-w-3xl mx-auto">
-            <h2 className="text-4xl md:text-5xl font-display font-bold text-primary mb-8">Klar til at starte dit haveprojekt?</h2>
-            <p className="text-lg text-primary/70 mb-12">
+            <h2 className="text-[32px] sm:text-4xl md:text-5xl font-display font-bold text-primary mb-6 md:mb-8 leading-tight">Klar til at starte dit haveprojekt?</h2>
+            <p className="text-[15px] sm:text-base md:text-lg text-primary/70 mb-8 md:mb-12 max-w-[280px] sm:max-w-none mx-auto leading-relaxed">
               Kontakt os i dag for en uforpligtende snak om dine muligheder. Vi glæder os til at høre fra dig!
             </p>
-            <div className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6">
-              <Link to="/kontakt" className="btn-primary">Få et tilbud nu</Link>
-              <a href="tel:+4512345678" className="btn-outline">Ring os op: +45 12 34 56 78</a>
+
+            <div className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6 w-full px-4 sm:px-0">
+              <Link to="/kontakt" className="btn-primary w-full sm:w-auto flex justify-center">Få et tilbud nu</Link>
+              <a href="tel:+4512345678" className="btn-outline w-full sm:w-auto flex justify-center whitespace-nowrap">Ring os op: 12 34 56 78</a>
             </div>
           </div>
         </motion.div>
