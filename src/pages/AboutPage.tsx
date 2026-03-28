@@ -1,4 +1,5 @@
 import { motion } from 'motion/react';
+import { useState } from 'react';
 import { Instagram, Linkedin, Mail } from 'lucide-react';
 
 const team = [
@@ -26,6 +27,8 @@ const team = [
 ];
 
 const AboutPage = () => {
+  const [activeImage, setActiveImage] = useState<number | null>(null);
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -90,10 +93,20 @@ const AboutPage = () => {
             >
               <div className="w-full lg:w-1/2">
                 <div className={`relative aspect-[4/5] rounded-[3rem] overflow-hidden shadow-xl ${idx % 2 === 0 ? 'bg-primary/5' : 'bg-accent/5'}`}>
-                  <img
+                  <motion.img
+                    onViewportEnter={() => {
+                      if (window.innerWidth < 1024) setActiveImage(idx);
+                    }}
+                    onViewportLeave={() => {
+                      if (window.innerWidth < 1024 && activeImage === idx) setActiveImage(null);
+                    }}
+                    viewport={{ amount: 0.6, margin: "-15% 0px -15% 0px" }}
+                    onClick={() => {
+                      if (window.innerWidth < 1024) setActiveImage(idx === activeImage ? null : idx);
+                    }}
                     src={member.image}
                     alt={member.name}
-                    className="w-full h-full object-cover mix-blend-multiply grayscale hover:grayscale-0 transition-all duration-500"
+                    className={`w-full h-full object-cover mix-blend-multiply transition-all duration-500 hover:grayscale-0 ${activeImage === idx ? 'grayscale-0' : 'grayscale'}`}
                     referrerPolicy="no-referrer"
                   />
                 </div>

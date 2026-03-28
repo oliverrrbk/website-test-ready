@@ -35,26 +35,27 @@ const services = [
   }
 ];
 
-const ServicesPage = () => {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2
-      }
+const containerVariants = {
+  offscreen: { opacity: 0 },
+  onscreen: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.2
     }
-  };
+  }
+};
 
-  const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: { duration: 0.5, ease: "easeOut" }
-    }
-  };
+const itemVariants = {
+  offscreen: { y: 20, opacity: 0 },
+  onscreen: {
+    y: 0,
+    opacity: 1,
+    transition: { duration: 0.5, ease: "easeOut" }
+  }
+};
+
+const ServicesPage = () => {
 
   return (
     <motion.div
@@ -86,8 +87,8 @@ const ServicesPage = () => {
 
       <motion.div
         variants={containerVariants}
-        initial="hidden"
-        whileInView="visible"
+        initial="offscreen"
+        whileInView="onscreen"
         viewport={{ once: true, margin: "-100px" }}
         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
       >
