@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { motion, useScroll, useSpring } from 'motion/react';
+import { motion, useScroll, useSpring, useTransform } from 'motion/react';
 import { Check, ArrowRight } from 'lucide-react';
 
 const steps = [
@@ -30,33 +30,29 @@ const steps = [
 ];
 
 const StepItem = ({ step }: { step: any }) => {
-  const variantsIcon = {
-    hidden: { scale: 0, backgroundColor: 'var(--color-bg-soft)' },
-    visible: { scale: 1, backgroundColor: 'var(--color-primary)', transition: { duration: 0.4 } }
-  };
+  const ref = useRef<HTMLDivElement>(null);
 
-  const variantsCard = {
-    hidden: { opacity: 0, x: step.align === 'right' ? -20 : 20 },
-    visible: { opacity: 1, x: 0, transition: { duration: 0.5, delay: 0.1 } }
-  };
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start 85%", "center center"]
+  });
 
-  const variantsLine = {
-    hidden: { width: 0 },
-    visible: { width: "100%", transition: { duration: 0.6, delay: 0.2 } }
-  };
+  // Calculate strict scroll-bound CSS variables directly (zero-lag interpolation)
+  const barWidth = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
+  const cardOpacity = scrollYProgress; // binds opacity directly: 0 to 1
+  const cardX = useTransform(scrollYProgress, [0, 1], [step.align === 'right' ? -30 : 30, 0]);
+  
+  const iconScale = useTransform(scrollYProgress, [0, 1], [0.5, 1]);
+  const iconOpacity = scrollYProgress;
 
   return (
-    <motion.div 
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: "-10% 0px -10% 0px" }}
-      className={`relative flex items-center gap-6 ${step.align === 'right' ? 'md:flex-row flex-row' : 'md:flex-row-reverse flex-row'}`}
-    >
+    <div ref={ref} className={`relative flex items-center gap-6 ${step.align === 'right' ? 'md:flex-row flex-row' : 'md:flex-row-reverse flex-row'}`}>
+      
       {/* Icon Marker */}
       <div className={`relative z-10 flex-shrink-0 ${step.align === 'right' ? 'md:ml-auto ml-0' : 'md:mr-auto ml-0'}`}>
         <motion.div
-          variants={variantsIcon}
-          className="relative w-14 h-14 md:w-16 md:h-16 rounded-xl flex items-center justify-center text-white shadow-lg border-2 border-primary/20"
+          style={{ scale: iconScale, opacity: iconOpacity }}
+          className="relative w-14 h-14 md:w-16 md:h-16 rounded-xl flex items-center justify-center text-white shadow-lg border-2 border-primary/20 bg-primary"
         >
           <Check className="w-6 h-6 md:w-8 md:h-8 text-white" />
         </motion.div>
@@ -65,7 +61,7 @@ const StepItem = ({ step }: { step: any }) => {
       {/* Card */}
       <div className={`flex-1 max-w-md ${step.align === 'right' ? 'md:text-right md:pr-6 pl-4 md:pl-0' : 'md:text-left md:pl-6 pl-4 md:pl-0'}`}>
         <motion.div
-          variants={variantsCard}
+          style={{ opacity: cardOpacity, x: cardX }}
           className="p-6 md:p-8 rounded-2xl bg-white border border-gray-100 shadow-sm transition-all duration-300 hover:shadow-md"
         >
           <div className={`flex items-center gap-2 mb-3 ${step.align === 'right' ? 'md:justify-end' : ''}`}>
@@ -76,13 +72,13 @@ const StepItem = ({ step }: { step: any }) => {
 
           <div className={`mt-5 h-0.5 bg-gray-100 rounded-full overflow-hidden flex ${step.align === 'right' ? 'justify-end' : 'justify-start'}`}>
             <motion.div
-              variants={variantsLine}
-              className="h-full bg-primary rounded-full transition-all"
+              style={{ width: barWidth }}
+              className="h-full bg-primary rounded-full transition-none"
             />
           </div>
         </motion.div>
       </div>
-    </motion.div>
+    </div>
   );
 };
 
