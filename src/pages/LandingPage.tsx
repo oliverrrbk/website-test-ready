@@ -39,7 +39,7 @@ const LandingPage = () => {
       <motion.div
         initial={{ opacity: 1 }}
         animate={{ opacity: 0 }}
-        transition={{ duration: 1.0, ease: "easeInOut", delay: 0.7 }}
+        transition={{ duration: 1.0, ease: "easeInOut", delay: 1.7 }}
         className="fixed inset-0 z-[99999] bg-white pointer-events-none"
       />
 
