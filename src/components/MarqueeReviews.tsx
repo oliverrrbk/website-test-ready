@@ -81,7 +81,7 @@ export function MarqueeReviewsVertical() {
                 <div className="flex-1 text-center lg:text-left mb-8 lg:mb-0">
                     <AnimatedText
                         text="Hvad vores kunder siger"
-                        textClassName="text-4xl md:text-5xl font-display font-bold text-primary relative z-10"
+                        textClassName="text-[26px] min-[390px]:text-3xl sm:text-4xl md:text-5xl font-display font-bold text-primary relative z-10 whitespace-nowrap sm:whitespace-normal"
                         underlineDuration={1.2}
                         className="items-start max-w-max mx-auto lg:mx-0"
                     />
