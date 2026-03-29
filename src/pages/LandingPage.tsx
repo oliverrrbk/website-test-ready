@@ -53,6 +53,7 @@ const LandingPage = () => {
             defaultMuted
             playsInline
             preload="auto"
+            poster="/hero-poster.jpg"
             className="w-full h-full object-cover"
           >
             <source src="https://video-public.canva.com/VAG5zgHpgwU/d/bwandrmlue.mp4" type="video/mp4" />
