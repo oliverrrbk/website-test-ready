@@ -237,7 +237,7 @@ const LandingPage = () => {
           <div className="relative z-10 max-w-3xl mx-auto">
             <h2 className="text-[32px] sm:text-4xl md:text-5xl font-display font-bold text-primary mb-6 md:mb-8 leading-tight">Klar til at starte dit haveprojekt?</h2>
             <p className="text-[15px] sm:text-base md:text-lg text-primary/70 mb-8 md:mb-12 max-w-[280px] sm:max-w-none mx-auto leading-relaxed">
-              Kontakt os i dag for en uforpligtende snak om dine muligheder. Vi glæder os til at høre fra dig!
+              Kontakt os i dag for en uforpligtende snak om dine muligheder. <br className="hidden md:block" />Vi glæder os til at høre fra dig!
             </p>
 
             <div className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6 w-full px-4 sm:px-0">

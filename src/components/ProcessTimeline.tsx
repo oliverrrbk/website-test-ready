@@ -138,17 +138,12 @@ export const ProcessTimeline = () => {
         <div className="relative max-w-5xl mx-auto" ref={containerRef}>
           {/* Timeline Line */}
           <svg className="absolute left-1/2 -translate-x-1/2 top-0 w-full pointer-events-none hidden md:block" preserveAspectRatio="none" viewBox="0 0 800 1000" style={{ height: "calc(100% + 80px)" }}>
-            <defs>
-              <linearGradient id="pathGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stopColor="currentColor" className="text-primary" stopOpacity="0.6"></stop>
-                <stop offset="100%" stopColor="currentColor" className="text-primary" stopOpacity="0.3"></stop>
-              </linearGradient>
-            </defs>
             <path d="M 400 40 C 400 100, 220 140, 220 200 S 580 300, 580 360 S 220 460, 220 520 S 580 620, 580 680 S 400 780, 400 860 L 400 960" fill="none" className="stroke-gray-300" strokeWidth="2" strokeLinecap="round"></path>
             <motion.path
               d="M 400 40 C 400 100, 220 140, 220 200 S 580 300, 580 360 S 220 460, 220 520 S 580 620, 580 680 S 400 780, 400 860 L 400 960"
               fill="none"
-              stroke="url(#pathGradient)"
+              stroke="currentColor"
+              className="text-primary/40"
               strokeWidth="2"
               strokeLinecap="round"
               style={{ pathLength }}
