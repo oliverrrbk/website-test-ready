@@ -29,7 +29,7 @@ const steps = [
   }
 ];
 
-const StepItem = ({ step }: { step: any }) => {
+const StepItem: React.FC<{ step: any }> = ({ step }) => {
   const ref = useRef<HTMLDivElement>(null);
 
   const { scrollYProgress } = useScroll({
@@ -62,7 +62,7 @@ const StepItem = ({ step }: { step: any }) => {
       <div className={`flex-1 max-w-md ${step.align === 'right' ? 'md:text-right md:pr-6 pl-4 md:pl-0' : 'md:text-left md:pl-6 pl-4 md:pl-0'}`}>
         <motion.div
           style={{ opacity: cardOpacity, x: cardX }}
-          className="p-6 md:p-8 rounded-2xl bg-white border border-gray-100 shadow-sm transition-all duration-300 hover:shadow-md"
+          className="p-6 md:p-8 rounded-2xl bg-white border border-gray-100 shadow-sm transition-shadow duration-300 hover:shadow-md"
         >
           <div className={`flex items-center gap-2 mb-3 ${step.align === 'right' ? 'md:justify-end' : ''}`}>
             <span className="text-xs font-mono text-accent font-bold uppercase tracking-wider">Step {step.num}</span>
@@ -102,7 +102,10 @@ export const ProcessTimeline = () => {
   return (
     <section data-section="process" className="pt-16 pb-16 md:pt-20 md:pb-20 bg-bg-soft text-gray-900 relative overflow-hidden">
       <div className="absolute inset-0 pointer-events-none hidden md:block">
-        <div className="absolute top-1/4 left-1/3 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[150px]"></div>
+        <div 
+          className="absolute top-1/4 left-1/3 w-[800px] h-[800px] rounded-full"
+          style={{ background: 'radial-gradient(circle, rgba(46,71,59,0.05) 0%, rgba(46,71,59,0) 60%)', transform: 'translate(-20%, -20%)' }}
+        ></div>
       </div>
       <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-12 xl:px-24 relative">
         <div className="text-center max-w-3xl mx-auto mb-20">
