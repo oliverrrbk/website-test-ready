@@ -50,7 +50,9 @@ const LandingPage = () => {
             autoPlay
             loop
             muted
+            defaultMuted
             playsInline
+            preload="auto"
             className="w-full h-full object-cover"
           >
             <source src="https://video-public.canva.com/VAG5zgHpgwU/d/bwandrmlue.mp4" type="video/mp4" />
