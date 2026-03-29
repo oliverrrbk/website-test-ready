@@ -44,7 +44,7 @@ const LandingPage = () => {
       />
 
       {/* Hero Section */}
-      <section className="relative min-h-[75svh] md:min-h-0 md:h-[80vh] py-14 md:py-0 flex items-center overflow-hidden mt-8 md:mt-12 mx-4 sm:mx-6 lg:mx-8 rounded-[2rem] md:rounded-[3rem] shadow-2xl">
+      <section className="relative min-h-[60svh] md:min-h-0 md:h-[80vh] py-10 md:py-0 flex items-center overflow-hidden mt-8 md:mt-12 mx-4 sm:mx-6 lg:mx-8 rounded-[2rem] md:rounded-[3rem] shadow-2xl">
         <div className="absolute inset-0 z-0">
           <video
             autoPlay
