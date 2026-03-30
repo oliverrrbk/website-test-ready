@@ -94,7 +94,7 @@ const ContactPage = () => {
                 </div>
                 <div>
                   <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">Skriv til os</p>
-                  <a href="mailto:info@groenelegance.dk" className="text-primary font-bold hover:text-accent transition-colors">info@groenelegance.dk</a>
+                  <a href="mailto:info@grønrum.dk" className="text-primary font-bold hover:text-accent transition-colors">info@grønrum.dk</a>
                 </div>
               </div>
             </div>

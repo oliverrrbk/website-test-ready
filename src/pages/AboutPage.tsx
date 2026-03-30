@@ -7,22 +7,22 @@ const team = [
     name: "Morten Jensen",
     role: "Ejer & Chef-anlægsgartner",
     image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=800",
-    bio: "Morten har over 20 års erfaring inden for anlægsbranchen. Han startede Grøn Elegance i 2010 med en vision om at bringe mere natur og æstetik ind i de danske parcelhushaver. Morten er uddannet anlægsgartner og har en passion for stenarbejde og moderne havedesign.",
-    social: { linkedin: "#", mail: "morten@groenelegance.dk" }
+    bio: "Morten har over 20 års erfaring inden for anlægsbranchen. Han startede Grønrum Anlæg i 2010 med en vision om at bringe mere natur og æstetik ind i de danske parcelhushaver. Morten er uddannet anlægsgartner og har en passion for stenarbejde og moderne havedesign.",
+    social: { linkedin: "#", mail: "morten@grønrum.dk" }
   },
   {
     name: "Lars Nielsen",
     role: "Projektleder & Belægningsekspert",
     image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=800",
     bio: "Lars er manden, der får tingene til at ske på pladsen. Han er ekspert i alt fra store belægningsopgaver til komplekse støttemure. Med et skarpt øje for detaljen sikrer han, at alle projekter lever op til vores høje kvalitetskrav og bliver færdige til tiden.",
-    social: { linkedin: "#", mail: "lars@groenelegance.dk" }
+    social: { linkedin: "#", mail: "lars@grønrum.dk" }
   },
   {
     name: "Sofie Holm",
     role: "Havearkitekt & Beplantningsansvarlig",
     image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=800",
     bio: "Sofie er vores kreative sjæl. Hun er uddannet havearkitekt og ved præcis, hvilke planter der trives hvor. Hun skaber de smukkeste beplantningsplaner, der sikrer, at din have er spændende at kigge på året rundt – også i de mørke vintermåneder.",
-    social: { instagram: "#", mail: "sofie@groenelegance.dk" }
+    social: { instagram: "#", mail: "sofie@grønrum.dk" }
   }
 ];
 
@@ -47,7 +47,7 @@ const AboutPage = () => {
             Vi skaber uderum med <span className="text-accent">sjæl og kvalitet</span>
           </h1>
           <p className="text-lg text-gray-500 leading-relaxed mb-6">
-            Grøn Elegance blev grundlagt med en simpel mission: At levere anlægsarbejde af højeste kvalitet, hvor kundens ønsker og havens naturlige potentiale altid er i centrum.
+            Grønrum Anlæg blev grundlagt med en simpel mission: At levere anlægsarbejde af højeste kvalitet, hvor kundens ønsker og havens naturlige potentiale altid er i centrum.
           </p>
           <p className="text-lg text-gray-500 leading-relaxed">
             Vi tror på, at en have er mere end bare græs og fliser. Det er et frirum, et sted til fordybelse og et samlingspunkt for familien. Derfor lægger vi vores hjerte i hvert eneste projekt, uanset om det er en lille beskæringsopgave eller en totalrenovering af en herregårdshave.
